@@ -22,7 +22,7 @@
         }
         h1 {
             text-align: center;
-            color: #007bff;
+            color: #2e7d32; /* Professional Green Color */
         }
         .form-group {
             margin-bottom: 15px;
@@ -75,6 +75,18 @@
         .info h2 {
             margin-top: 0;
         }
+        .event-details {
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 15px;
+            background-color: #e9ecef;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .event-details p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
         .note {
             margin-top: 20px;
             font-style: italic;
@@ -85,6 +97,13 @@
 <body>
     <div class="container">
         <h1>Event Registration</h1>
+        
+        <!-- Event Details Section -->
+        <div class="event-details">
+            <p><strong>Time:</strong> 9.00am - 3.30pm</p>
+            <p><strong>Venue:</strong> Madeleine Lindley Ltd, Book Centre, Chadderton, Oldham, OL9 9XA</p>
+        </div>
+
         <form id="registrationForm">
             <!-- Event Selection -->
             <div class="form-group">
@@ -184,9 +203,10 @@
                 <p>The full conference fee will be charged for cancellations received within 2 weeks of the start of the conference.</p>
             </div>
 
-            <!-- Confirmation Note -->
-            <div class="note">
-                <p>You will receive a confirmation within 48 hours. For more information, please email <a href="mailto:books@madeleinelindley.com">books@madeleinelindley.com</a>.</p>
+            <!-- Confirmation Notice -->
+            <div class="info">
+                <h2>Confirmation Notice</h2>
+                <p>You will receive a confirmation email within 48 hours of submitting this form. For more information, please contact us at <a href="mailto:books@madeleinelindley.com">books@madeleinelindley.com</a>.</p>
             </div>
 
             <div class="form-group">
@@ -211,8 +231,8 @@
                         invoiceDetails.style.display = 'block';
                         cardDetails.style.display = 'none';
                     } else if (this.value === 'card') {
-                        invoiceDetails.style.display = 'none';
                         cardDetails.style.display = 'block';
+                        invoiceDetails.style.display = 'none';
                     }
                 });
             });
@@ -220,12 +240,12 @@
             document.getElementById('registrationForm').addEventListener('submit', function(event) {
                 event.preventDefault();
 
-                emailjs.sendForm('service_10m5en5', 'template_nsflcen', this)
-                    .then(function(response) {
-                        alert('Form submitted successfully! You will receive a confirmation within 48 hours. For more information, please email books@madeleinelindley.com.');
+                emailjs.sendForm('service_oa6m3wm', 'template_dehqmm4', this)
+                    .then(function() {
+                        alert('Your registration has been submitted successfully.');
+                        document.getElementById('registrationForm').reset();
                     }, function(error) {
-                        alert('Failed to submit form. Please try again.');
-                        console.error('Error:', error);
+                        alert('An error occurred while submitting your registration: ' + JSON.stringify(error));
                     });
             });
         });
